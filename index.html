@@ -1,15 +1,101 @@
 <html>
     <head>
-        <title>This is going to be a nice menu</title>
+        <title>Bjørne menu example</title>
+        <link rel="stylesheet" href="dist/less/styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <style>
+            body {
+                margin: 0;
+                font-family: "Open Sans", sans-serif;
+                background: #1abc9c;
+                padding-left: 400px;
+            }
+            .wrapper {
+                padding: 15px;
+                color: #fff;
+            }
+        </style>
+
     </head>
     <body>
-        <h1>Yo dude</h1>
-        <ul>
-            <li>Nice!</li>
-            <li>Nice!</li>
-            <li>Nice!</li>
-            <li>Nice!</li>
-            <li>Nice!</li>
-        </ul>
+        
+
+        <nav id="mobile-nav">
+            <div class="menu-header">
+                <a id="root" href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+                <div id="back" data-target="menu-1">
+                    <i class="fa fa-mail-reply"></i>
+                </div>   
+            </div>
+
+            <div class="menu root-menu active" id="menu-1" data-parent="menu-1">
+                <div class="currentMenu">
+                    This is Menu 1
+                </div>
+                <ul>
+                    <li>
+                        <a href="#">Menu 2</a>
+                        <span class="next" data-target="menu-2">
+                            <i class="fa-arrow-right fa"></i>
+                        </span>
+
+                    </li>
+                    <li>
+                        <a href="#">Menu 3</a>
+                    </li>
+                    <li>
+                        <a href="#">Menu 4</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu" id="menu-2" data-parent="menu-1">
+                <div class="currentMenu">
+                    This is Menu 2
+                </div>
+                <ul>
+                    <li>
+                        <a href="#">Menu 5</a>
+                        <span class="next" data-target="menu-5">
+                            <i class="fa-arrow-right fa"></i>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="#">Menu 6</a>
+                    </li>
+                    <li>
+                        <a href="#">Menu 7</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="menu" id="menu-5" data-parent="menu-2">
+                <div class="currentMenu">
+                    This is Menu 5
+                </div>
+                <ul>
+                    <li>
+                        <a href="#">Menu 8</a>
+                    </li>
+                    <li>
+                        <a href="#">Menu 9</a>
+                    </li>
+                    <li>
+                        <a href="#">Menu 10</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>   
+        
+        <div class="wrapper">
+            <h1>The Bjørne Menu is a menu with app feeling!</h1>
+        </div>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="dist/js/script.js"></script>
+
     </body>
 </html>

@@ -1,0 +1,62 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{	
+	
+	var rootNode = CurrentPage.Site();
+	
+	dynamic parent = CurrentPage;
+	if(!CurrentPage.IsAncestorOrSelf(rootNode)){
+		parent = CurrentPage.Parent;
+	}
+}
+
+<nav id="mobile-nav" >
+	<div class="menu-header">
+	    <div id="back" data-target="menu-@parent.Id">
+            <i class="fa fa-mail-reply"></i>
+        </div>
+		<a id="root" href="/">
+		    <i class="fa fa-home"></i>
+        </a>
+    </div>
+	
+	@menuLoop(rootNode)
+
+</nav>
+	
+@helper menuLoop(dynamic item){
+	var rootNode = CurrentPage.Site();
+	
+	var  menuClass = "";
+	if(item.Id == rootNode.Id){
+		menuClass = "root-menu";
+	}
+	dynamic parent = item;
+	if(!item.IsAncestorOrSelf(rootNode)){
+		parent = rootNode;
+	}
+	
+	<div class="menu @menuClass @(item.IsEqual(CurrentPage) ? "active" : null)" id="menu-@item.Id" data-parent="menu-@parent.Id">
+    	<div class="currentMenu">
+			This is @item.Name
+		</div>
+		<ul>
+			@menuListLoop(item)
+        </ul>
+    </div>
+	foreach(var page in item.Children().Where("Visible")){
+		@menuLoop(page)
+	}
+}
+
+@helper menuListLoop(dynamic item){
+	foreach(var page in item.Children().Where("Visible")){
+		<li class="@(page.IsEqual(CurrentPage) ? "active" : null)">
+			<a href="@page.Url">@page.Name</a>
+			@if(page.Children().Where("Visible").Any()){
+				<span class="next" data-target="menu-@page.Id">
+					<i class="fa-arrow-right fa"></i>
+				</span>
+			}
+		</li>
+	}
+}

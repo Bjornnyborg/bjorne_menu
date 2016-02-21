@@ -1,0 +1,138 @@
+@primary: #1abc9c;
+@animate-speed: .2s;
+
+#mobile-nav {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background: #f4f4f4;
+    width: 400px;
+    overflow: hidden;
+    max-width: 100%;
+
+    a {
+        text-decoration: none;
+    }
+
+    .menu-header {
+        position: relative;
+        padding:0;
+        box-shadow: 0 1px 4px 0 rgba(0,0,0,.2);
+        z-index: 2;
+        overflow:hidden;
+        height:50px;
+        overflow:hidden;
+
+        -webkit-transition: height @animate-speed;
+        -o-transition: height @animate-speed;
+        transition: height @animate-speed;
+
+        &.active {
+            height:0;
+
+            -webkit-transition: height @animate-speed;
+            -o-transition: height @animate-speed;
+            transition: height @animate-speed;
+        }
+    }
+    .currentMenu {
+        padding:10px 15px;
+        font-weight:bold;
+        border-bottom:1px solid #f4f4f4;
+        color:@primary;
+    }
+    #back, #root {
+        width: 50%;
+        height:50px;
+        line-height: 50px;
+        color: #333;
+        text-align:center;
+        background: #fff;
+        display:block;
+        float: left;
+        overflow: hidden;
+        .fa {
+            margin-top: 14px;
+            font-size: 20px;
+        }
+    }
+    #back {
+        -webkit-transition: all @animate-speed;
+        -o-transition: all @animate-speed;
+        transition: all @animate-speed;
+        height: 0;
+        &.active {
+            height:50px;
+            -webkit-transition: all @animate-speed;
+            -o-transition: all @animate-speed;
+            transition: all @animate-speed;
+        }
+    }
+    .menu {
+        position: absolute;
+        -webkit-overflow-scrolling: touch;
+        overflow: scroll;
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin: 0;
+        position: absolute;
+        left: -100%;
+        right: 100%;
+
+        -webkit-transition: left @animate-speed;
+        -o-transition: left @animate-speed;
+        transition: left @animate-speed;
+
+        z-index: 0;
+        top: 50px;
+        bottom: 0;
+        background: #fff;
+        &.active {
+            z-index: 1;
+            left: 0;
+            right: 0%;
+            -webkit-transition: left @animate-speed;
+            -o-transition: left @animate-speed;
+            transition: left @animate-speed;
+        }
+        .next {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: 14px 20px;
+            border-left: 1px solid #f4f4f4;
+        }
+        .type {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: 10px 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+                &.active {
+                    background:@primary;
+                    a {
+                        color:#fff;
+                    }
+                }
+                position: relative;
+                a {
+                    display: block;
+                    padding: 10px 15px;
+                    border-bottom: 1px solid #f4f4f4;
+                    color: #333;
+                }
+            }
+        }
+
+    }
+}
